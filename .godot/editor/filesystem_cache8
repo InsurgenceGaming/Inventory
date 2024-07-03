@@ -1,3 +1,7 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1719903787
-icon.svg::CompressedTexture2D::4980711341901240866::1719903779::1719903788::1::::<><>::
+::res://::1720018803
+card_back.png::CompressedTexture2D::2315229070128767121::1720018803::1720018803::1::::<><>::
+Inventory.tscn::PackedScene::4115624725495159512::1720008776::0::1::::<><>::
+open_world.gd::GDScript::-1::1719905385::0::1::::<>Node2D<>::
+open_world.tscn::PackedScene::8633513389076072849::1720018777::0::1::::<><>::res://open_world.gd
+new_script.gd::GDScript::-1::1720018733::0::1::::dropped_item<>RefCounted<>::
