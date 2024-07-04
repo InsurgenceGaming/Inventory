@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvaex680vv666"]
+
+[ext_resource type="Script" path="res://open_world.gd" id="1_p04kc"]
+[ext_resource type="PackedScene" uid="uid://byvv0dbstfyt1" path="res://Inventory.tscn" id="2_h7psm"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_p04kc")
+inventory = ExtResource("2_h7psm")

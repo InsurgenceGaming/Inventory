@@ -1,5 +1,3 @@
 res://open_world.tscn
-res://new_script.gd
-res://open_world.gd
 res://Inventory.tscn
-res://Inventory.gd
+res://open_world.gd
