@@ -2,14 +2,17 @@ extends RigidBody2D
 @export var inventory : PackedScene
 var direction = Vector2.ZERO
 var InventoryData
+var inventory_array = []
+#this sould be removed as there has to be a better way to fix this
+@export var empty_slot :InvItem
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var inventory_array = []
 	inventory_array.resize(40)
 	if InventoryData == null:
 		self.set_meta("inventory_open",false)
 		self.set_meta("Inventory_size",inventory_array)
-		
+		for slot in inventory_array.size():
+			inventory_array[slot] = empty_slot
 		InventoryData = true
 func _physics_process(delta):
 	linear_velocity = 100 * direction
@@ -35,3 +38,11 @@ func _process(delta):
 		
 		
 		
+
+
+func _on_button_2_pressed():
+	if !get_meta("inventory_open"):
+		set_meta("inventory_open",true)
+		var new_inventory = inventory.instantiate()
+		get_node("CanvasLayer").add_child(new_inventory)
+		print("i should open")

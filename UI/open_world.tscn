@@ -1,8 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvaex680vv666"]
+[gd_scene load_steps=9 format=3 uid="uid://dvaex680vv666"]
 
 [ext_resource type="Script" path="res://open_world.gd" id="1_a1rel"]
 [ext_resource type="PackedScene" uid="uid://byvv0dbstfyt1" path="res://UI/Inventory.tscn" id="2_h8xbk"]
+[ext_resource type="Texture2D" uid="uid://dv2v024ksjusa" path="res://Test Slot.png" id="3_7djh7"]
+[ext_resource type="Script" path="res://test_button.gd" id="3_gtxvi"]
 [ext_resource type="Texture2D" uid="uid://78rqqd2kc6f2" path="res://card_back.png" id="3_leiqt"]
+[ext_resource type="Script" path="res://Item_Resource.gd" id="4_atyak"]
+
+[sub_resource type="Resource" id="Resource_15lin"]
+script = ExtResource("4_atyak")
+Item_name = ""
+Item_quantity = 0
+Item_Max_quantity = 0
+Item_Texture = ExtResource("3_7djh7")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4uvgi"]
 
@@ -14,12 +24,29 @@ mass = 0.01
 gravity_scale = 0.0
 script = ExtResource("1_a1rel")
 inventory = ExtResource("2_h8xbk")
-metadata/Inventory_size = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+empty_slot = SubResource("Resource_15lin")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Sprite2D"]
+
+[node name="Button" type="Button" parent="Sprite2D/CanvasLayer"]
+offset_left = 64.0
+offset_top = 604.0
+offset_right = 137.0
+offset_bottom = 612.0
+script = ExtResource("3_gtxvi")
+
+[node name="Button2" type="Button" parent="Sprite2D/CanvasLayer"]
+offset_left = 548.0
+offset_top = 560.0
+offset_right = 556.0
+offset_bottom = 568.0
+scale = Vector2(31.53, 9.47992)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D"]
 shape = SubResource("RectangleShape2D_4uvgi")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
 texture = ExtResource("3_leiqt")
+
+[connection signal="pressed" from="Sprite2D/CanvasLayer/Button" to="Sprite2D/CanvasLayer/Button" method="_on_pressed"]
+[connection signal="pressed" from="Sprite2D/CanvasLayer/Button2" to="Sprite2D" method="_on_button_2_pressed"]

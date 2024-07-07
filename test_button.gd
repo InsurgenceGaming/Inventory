@@ -1,17 +1,16 @@
-extends Panel
+extends Button
 
-@onready var item_visual : Sprite2D = $Sprite2D
+@onready var Item = preload("res://Apple.tres")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-func Slot_update(item:InvItem):
-	if item:
-		item_visual.texture = item.Item_Texture
-		print("i ran")
-	else:
-		pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_pressed():
+	get_parent().get_parent().inventory_array[1]=Item
+	
