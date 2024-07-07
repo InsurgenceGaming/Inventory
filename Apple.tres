@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://cj2knphf8gxfl"]
+
+[ext_resource type="Script" path="res://Item_Resource.gd" id="1_3xjs4"]
+[ext_resource type="Texture2D" uid="uid://b25vd030acvmr" path="res://apple.png" id="1_siia6"]
+
+[resource]
+script = ExtResource("1_3xjs4")
+Item_name = "Apple"
+Item_quantity = 10
+Item_Max_quantity = 64
+Item_Texture = ExtResource("1_siia6")

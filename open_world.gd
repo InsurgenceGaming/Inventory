@@ -4,8 +4,12 @@ var direction = Vector2.ZERO
 var InventoryData
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var inventory_array = []
+	inventory_array.resize(40)
 	if InventoryData == null:
 		self.set_meta("inventory_open",false)
+		self.set_meta("Inventory_size",inventory_array)
+		
 		InventoryData = true
 func _physics_process(delta):
 	linear_velocity = 100 * direction

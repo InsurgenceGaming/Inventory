@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvaex680vv666"]
+
+[ext_resource type="Script" path="res://open_world.gd" id="1_a1rel"]
+[ext_resource type="PackedScene" uid="uid://byvv0dbstfyt1" path="res://UI/Inventory.tscn" id="2_h8xbk"]
+[ext_resource type="Texture2D" uid="uid://78rqqd2kc6f2" path="res://card_back.png" id="3_leiqt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4uvgi"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="RigidBody2D" parent="."]
+position = Vector2(234, 91)
+mass = 0.01
+gravity_scale = 0.0
+script = ExtResource("1_a1rel")
+inventory = ExtResource("2_h8xbk")
+metadata/Inventory_size = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D"]
+shape = SubResource("RectangleShape2D_4uvgi")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+texture = ExtResource("3_leiqt")

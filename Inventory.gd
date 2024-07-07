@@ -1,9 +1,17 @@
 extends Control
 
 var mouse_in = false
+@onready var slot = preload("res://UI/Slot.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if $Panel/GridContainer.get_children().is_empty():
+		for i in get_parent().get_parent().get_meta("Inventory_size"):
+			var new_slot = slot.instantiate()
+			$Panel/GridContainer.add_child(new_slot)
+			if i != null:
+				new_slot.Slot_update()
+
+			
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
