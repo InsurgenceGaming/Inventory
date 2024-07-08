@@ -11,5 +11,6 @@ config_version=5
 [application]
 
 config/name="Inventory"
+run/main_scene="res://UI/open_world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"

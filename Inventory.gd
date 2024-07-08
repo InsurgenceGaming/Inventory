@@ -15,7 +15,7 @@ func _ready():
 	for i in range(min(get_parent().get_parent().get_meta("Inventory_size").size(),slots.size())):
 		slots[i].Slot_update(get_parent().get_parent().get_meta("Inventory_size")[i])
 		
-
+	
 			
 
 

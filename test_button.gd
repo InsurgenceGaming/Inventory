@@ -12,5 +12,12 @@ func _process(delta):
 
 
 func _on_pressed():
-	get_parent().get_parent().inventory_array[1]=Item
+	var  inventory_array = get_parent().get_parent().inventory_array
+	for i in range(len(inventory_array)):
+		if inventory_array[i].Item_name == "":
+			inventory_array[i] = Item
+			break
+			
+			
+	
 	

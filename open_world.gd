@@ -23,7 +23,8 @@ func _input(event):
 		direction = Vector2.RIGHT
 	else:
 		direction = Vector2.ZERO
-
+	
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#this code is to manage the opening of the inventory and prevents the player from opening multiple instances
