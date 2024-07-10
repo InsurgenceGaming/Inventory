@@ -23,3 +23,8 @@ texture_filter = 1
 position = Vector2(25, 25)
 scale = Vector2(1.233, 1.233)
 texture = ExtResource("2_ri7ps")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
