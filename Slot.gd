@@ -9,7 +9,11 @@ func Slot_update(item:InvItem):
 	if item:
 		item_visual.texture = item.Item_Texture
 		print("i ran")
-		$Label.text = str(item.Item_quantity)
+		if item.Item_quantity > 1:
+			$Label.visible = true
+			$Label.text = str(item.Item_quantity)
+		else:
+			$Label.visible = false
 	else:
 		pass
 
