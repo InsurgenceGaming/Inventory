@@ -6,6 +6,9 @@ var mouse_in = false
 
 #
 func _ready():
+	#Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	set_meta("ItemHeld",false)
+	
 	if $Panel/GridContainer.get_children().is_empty():
 		for i in get_parent().get_parent().get_meta("Inventory_size"):
 			var new_slot = slot.instantiate()
@@ -30,6 +33,10 @@ func _input(event):
 
 func _on_button_pressed():
 	get_parent().get_parent().set_meta("inventory_open",false)
+	if get_meta("ItemHeld") == true:
+		Input.set_custom_mouse_cursor(null)
+		set_meta("ItemHeld",false)
+		print(get_meta("ItemHeld"))
 	self.queue_free()
 	
 

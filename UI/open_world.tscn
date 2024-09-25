@@ -17,6 +17,7 @@ Item_Max_quantity = 0
 [node name="Node2D" type="Node2D"]
 
 [node name="Sprite2D" type="RigidBody2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(234, 91)
 mass = 0.01
 gravity_scale = 0.0

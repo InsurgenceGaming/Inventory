@@ -30,3 +30,5 @@ offset_right = 68.0
 offset_bottom = 52.0
 text = "64
 "
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
