@@ -1,14 +1,12 @@
 extends Panel
 
 @onready var item_visual : Sprite2D = $Sprite2D
-<<<<<<< Updated upstream
-=======
+
 var player : Node
 var inventory_Base_node : Node
 func initialize(player_ref: Node, inventory_ref : Node):
 	player = player_ref
 	inventory_Base_node = inventory_ref
->>>>>>> Stashed changes
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -23,12 +21,10 @@ func Slot_update(item:InvItem):
 			$Label.visible = false
 	else:
 		pass
-<<<<<<< Updated upstream
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-=======
 		
 func _on_gui_input(event: InputEvent) -> void:
 	##if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -73,4 +69,3 @@ func get_index_in_grid() -> int:
 		if parent_grid.get_child(i) == self:
 			return i
 	return -1
->>>>>>> Stashed changes
