@@ -1,3 +1,5 @@
-res://open_world.tscn
-res://Inventory.tscn
+res://UI/Inventory.tscn
 res://open_world.gd
+res://UI/open_world.tscn
+res://UI/Slot.tscn
+res://test_button.gd

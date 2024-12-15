@@ -1,8 +1,16 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1720110581
-card_back.png::CompressedTexture2D::2315229070128767121::1720018803::1720018803::1::::<><>::
-Inventory.gd::GDScript::-1::1720048749::0::1::::<>Control<>::
-Inventory.tscn::PackedScene::4115624725495159512::1720048787::0::1::::<><>::res://Inventory.gd
-new_script.gd::GDScript::-1::1720018733::0::1::::dropped_item<>RefCounted<>::
-open_world.gd::GDScript::-1::1720038220::0::1::::<>RigidBody2D<>::
-open_world.tscn::PackedScene::8633513389076072849::1720048779::0::1::::<><>::uid://78rqqd2kc6f2::::res://card_back.png<>res://open_world.gd<>uid://byvv0dbstfyt1::::res://Inventory.tscn
+::res://::1734277304
+apple.png::CompressedTexture2D::4344732566245845293::1720369354::1733933228::1::::<><>::
+Apple.tres::Resource/InvItem::5460910343671957681::1720636981::0::1::::<><>::res://Item_Resource.gd<>uid://b25vd030acvmr::::res://apple.png
+card_back.png::CompressedTexture2D::2315229070128767121::1720015203::1733933228::1::::<><>::
+cursor.png::CompressedTexture2D::2130120693443235798::1727281550::1733933228::1::::<><>::
+Inventory.gd::GDScript::-1::1734136364::0::1::::<>Control<>::
+Item_Resource.gd::GDScript::-1::1720369264::0::1::::InvItem<>Resource<>::
+open_world.gd::GDScript::-1::1734136934::0::1::::<>RigidBody2D<>::
+Slot.gd::GDScript::-1::1734136589::0::1::::<>Panel<>::
+Test Slot.png::CompressedTexture2D::8690287131941883036::1720366686::1733933228::1::::<><>::
+test_button.gd::GDScript::-1::1720625195::0::1::::<>Button<>::
+::res://UI/::1734137174
+Inventory.tscn::PackedScene::4115624725495159512::1734137174::0::1::::<><>::res://Inventory.gd
+open_world.tscn::PackedScene::8633513389076072849::1734136887::0::1::::<><>::res://open_world.gd<>uid://byvv0dbstfyt1::::res://UI/Inventory.tscn<>res://test_button.gd<>uid://78rqqd2kc6f2::::res://card_back.png<>res://Item_Resource.gd
+Slot.tscn::PackedScene::2534346011699473111::1734136887::0::1::::<><>::res://Slot.gd

@@ -16,35 +16,41 @@ Item_Max_quantity = 0
 
 [node name="Node2D" type="Node2D"]
 
+<<<<<<< Updated upstream
 [node name="Sprite2D" type="RigidBody2D" parent="."]
 position = Vector2(234, 91)
+=======
+[node name="rigidbody" type="RigidBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(237, 91)
+>>>>>>> Stashed changes
 mass = 0.01
 gravity_scale = 0.0
 script = ExtResource("1_a1rel")
 inventory = ExtResource("2_h8xbk")
 empty_slot = SubResource("Resource_15lin")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Sprite2D"]
+[node name="Sprite2D" type="Sprite2D" parent="rigidbody"]
+texture = ExtResource("3_leiqt")
 
-[node name="Button" type="Button" parent="Sprite2D/CanvasLayer"]
+[node name="CanvasLayer" type="CanvasLayer" parent="rigidbody"]
+
+[node name="Button" type="Button" parent="rigidbody/CanvasLayer"]
 offset_left = 64.0
 offset_top = 604.0
 offset_right = 137.0
 offset_bottom = 612.0
 script = ExtResource("3_gtxvi")
 
-[node name="Button2" type="Button" parent="Sprite2D/CanvasLayer"]
+[node name="Button2" type="Button" parent="rigidbody/CanvasLayer"]
 offset_left = 548.0
 offset_top = 560.0
 offset_right = 556.0
 offset_bottom = 568.0
 scale = Vector2(31.53, 9.47992)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rigidbody"]
 shape = SubResource("RectangleShape2D_4uvgi")
 
-[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
-texture = ExtResource("3_leiqt")
-
-[connection signal="pressed" from="Sprite2D/CanvasLayer/Button" to="Sprite2D/CanvasLayer/Button" method="_on_pressed"]
-[connection signal="pressed" from="Sprite2D/CanvasLayer/Button2" to="Sprite2D" method="_on_button_2_pressed"]
+[connection signal="pressed" from="rigidbody/CanvasLayer/Button" to="rigidbody/CanvasLayer/Button" method="_on_pressed"]
+[connection signal="pressed" from="rigidbody/CanvasLayer/Button2" to="rigidbody" method="_on_button_2_pressed"]
