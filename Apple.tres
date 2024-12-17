@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_3xjs4")
 Item_name = "Apple"
-Item_quantity = 10
+Item_quantity = 5
 Item_Max_quantity = 64
 Item_Texture = ExtResource("1_siia6")

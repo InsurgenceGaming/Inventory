@@ -16,22 +16,14 @@ Item_Max_quantity = 0
 
 [node name="Node2D" type="Node2D"]
 
-<<<<<<< Updated upstream
-[node name="Sprite2D" type="RigidBody2D" parent="."]
-position = Vector2(234, 91)
-=======
 [node name="rigidbody" type="RigidBody2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(237, 91)
->>>>>>> Stashed changes
+position = Vector2(234, 91)
 mass = 0.01
 gravity_scale = 0.0
 script = ExtResource("1_a1rel")
 inventory = ExtResource("2_h8xbk")
 empty_slot = SubResource("Resource_15lin")
-
-[node name="Sprite2D" type="Sprite2D" parent="rigidbody"]
-texture = ExtResource("3_leiqt")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="rigidbody"]
 
@@ -51,6 +43,9 @@ scale = Vector2(31.53, 9.47992)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rigidbody"]
 shape = SubResource("RectangleShape2D_4uvgi")
+
+[node name="Sprite2D" type="Sprite2D" parent="rigidbody"]
+texture = ExtResource("3_leiqt")
 
 [connection signal="pressed" from="rigidbody/CanvasLayer/Button" to="rigidbody/CanvasLayer/Button" method="_on_pressed"]
 [connection signal="pressed" from="rigidbody/CanvasLayer/Button2" to="rigidbody" method="_on_button_2_pressed"]

@@ -1,3 +1,5 @@
 res://UI/Inventory.tscn
 res://Inventory.gd
+res://UI/Slot.tscn
+res://UI/open_world.tscn
 res://Slot.gd

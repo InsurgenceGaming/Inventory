@@ -1,9 +1,14 @@
 extends Control
-
-var mouse_in = false
+## Define things on scene creation
 @onready var slot = preload("res://UI/Slot.tscn")
-# Called when the node enters the scene tree for the first time.
+## definre variables
+var draggingDistance
+var dir
+var dragging
+var newposition
+var mouse_in = false
 var player : Node
+
 func initialize(player_ref: Node):
 	player = player_ref
 	
@@ -14,10 +19,11 @@ func _ready():
 			var new_slot = slot.instantiate()
 			new_slot.initialize(player,$".")
 			$Panel/GridContainer.add_child(new_slot)
+			print(i)
 		
 	var slots: Array = $Panel/GridContainer.get_children()
 	for i in range(min(player.get_meta("Inventory_size").size(),slots.size())):
-		slots[i].Slot_update(player.get_meta("Inventory_size")[i])
+		slots[i].Slot_update()
 		
 		
 	
@@ -26,12 +32,21 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if dragging:
+		position = newposition
 
 func _input(event):
 	if event is InputEventMouseButton:
-		if event.is_pressed() && mouse_in:
-			print("yo")
+		if event.is_pressed() && mouse_in && !get_meta("ItemHeld"):
+			draggingDistance = position.distance_to(get_viewport().get_mouse_position())
+			dir = (get_viewport().get_mouse_position() - position).normalized()
+			newposition = get_viewport().get_mouse_position() - draggingDistance * dir
+			dragging = true
+		else:
+			dragging = false
+	elif event is InputEventMouseMotion and InputEventMouseButton:
+		if dragging:
+			newposition = get_viewport().get_mouse_position() - draggingDistance * dir
 
 func _on_button_pressed():
 	get_parent().get_parent().set_meta("inventory_open",false)
