@@ -11,11 +11,11 @@ func _process(delta):
 	pass
 
 
-func _on_pressed():
+func _on_pressed(): 
 	var  inventory_array = get_parent().get_parent().inventory_array
 	var Item_Instance = Item_resource.duplicate()
 	for i in range(len(inventory_array)):
-		if inventory_array[i].Item_name == Item_Instance.Item_name:
+		if inventory_array[i] !=null and inventory_array[i].Item_name == Item_Instance.Item_name:
 			var combined_total = inventory_array[i].Item_quantity + Item_Instance.Item_quantity
 			if combined_total > inventory_array[i].Item_Max_quantity:
 				var extra_items = combined_total - inventory_array[i].Item_Max_quantity
@@ -27,7 +27,7 @@ func _on_pressed():
 				Item_Instance.Item_quantity = 0
 				print(inventory_array[i].Item_quantity)
 				break
-		elif inventory_array[i].Item_name == "":
+		elif inventory_array[i] == null :
 			inventory_array[i] = Item_Instance
 			break
 			

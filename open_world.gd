@@ -12,7 +12,7 @@ func _ready():
 		self.set_meta("inventory_open",false)
 		self.set_meta("Inventory_size",inventory_array)
 		for slot in inventory_array.size():
-			inventory_array[slot] = empty_slot
+			inventory_array[slot] = null
 		InventoryData = true
 func _physics_process(delta):
 	linear_velocity = 100 * direction
@@ -34,8 +34,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_down") && !get_meta("inventory_open"):
 		set_meta("inventory_open",true)
 		var new_inventory = inventory.instantiate()
+		new_inventory.initialize(%rigidbody)
 		get_node("CanvasLayer").add_child(new_inventory)
-		print("i should open")
+		
 		
 		
 		
@@ -45,5 +46,6 @@ func _on_button_2_pressed():
 	if !get_meta("inventory_open"):
 		set_meta("inventory_open",true)
 		var new_inventory = inventory.instantiate()
+		new_inventory.initialize(%rigidbody)
 		get_node("CanvasLayer").add_child(new_inventory)
 		print("i should open")
