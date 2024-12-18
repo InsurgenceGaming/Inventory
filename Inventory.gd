@@ -24,16 +24,16 @@ func follow_mouse_sprite():
 	
 	
 func _ready():
+	follow_mouse_sprite()
 	if $Panel/GridContainer.get_children().is_empty():
 		for i in player.get_meta("Inventory_size"):
 			var new_slot = slot.instantiate()
-			new_slot.initialize(player,$".")
+			new_slot.initialize(player,$".",sprite_following_mouse)
 			$Panel/GridContainer.add_child(new_slot)
 		
 	var slots: Array = $Panel/GridContainer.get_children()
 	for i in range(min(player.get_meta("Inventory_size").size(),slots.size())):
 		slots[i].Slot_update()
-	follow_mouse_sprite()
 	set_meta("ItemHeld", false)
 
 

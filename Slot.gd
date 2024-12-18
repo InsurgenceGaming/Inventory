@@ -3,16 +3,20 @@ extends Panel
 @onready var item_visual : Sprite2D = $Sprite2D
 
 #make the item invisible when not carrying something, then i should save a lot of resources on queue free
+
+
 var index
 var inventory
-var first_item_clicked: bool
 var player : Node
 var inventory_Base_node : Node
-func initialize(player_ref: Node, inventory_ref : Node):
+var Cursor : Node
+func initialize(player_ref: Node, inventory_ref : Node,Cursor_ref:Node):
 	player = player_ref
 	inventory_Base_node = inventory_ref
+	Cursor = Cursor_ref
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(Cursor)
 	inventory = player.inventory_array
 	index = get_index_in_grid()
 	pass # Replace with function body.
@@ -39,23 +43,20 @@ func _on_gui_input(event: InputEvent) -> void:
 		index = get_index_in_grid()
 		print(index)
 		if inventory_Base_node.get_meta("ItemHeld") == true:
-			var temp = cursor_state["held_item"]
+			var temp = Cursor.get_meta("Held_item")
 			#inventory[index] = get_parent().get_parent().get_parent().get_node("cursor").get_meta("HeldItemInfo")
+			Update_cursor()
 			inventory[index] = temp
 			print(inventory[index].Item_quantity)
 			Slot_update() 
-			Update_cursor()
 			inventory_Base_node.set_meta("ItemHeld", false)
 			#get_parent().get_parent().get_parent().get_node("Held_shit").queue_free()
-		elif inventory[index] != null && first_item_clicked == false:
+		elif inventory[index] != null:
 				inventory_Base_node.set_meta("ItemHeld", true)
-				print("this should be first item clicked ",first_item_clicked)
 				Update_cursor()
 				inventory[index] = null
 				print("Item at slot ", index, " has been deleted.")
 				Slot_update()
-				first_item_clicked = true
-				print("this should be first item clicked ",first_item_clicked)
 		
 		
 #		the below code is buggy as fuck at the minute
@@ -123,15 +124,12 @@ func _on_gui_input(event: InputEvent) -> void:
 			
 			
 			
-var cursor_state = {
-	"held_item": null
-}
+
 
 func Update_cursor():
-	var Cursor = inventory_Base_node.get_node("cursor")
 	if inventory[index] == null:
 		Cursor.texture = null
-		cursor_state["held_item"] = null
+		Cursor.set_meta("Held_item",null)
 		print("Cursor texture set to null")
 	else:
 		Cursor.texture = inventory[index].Item_Texture
@@ -142,8 +140,8 @@ func Update_cursor():
 		item_resource.Item_Texture = inventory[index].Item_Texture
 		item_resource.Item_Max_quantity = inventory[index].Item_Max_quantity
 		
-		cursor_state["held_item"] = item_resource
-		print("Cursor now holds item: ", cursor_state["held_item"])
+		Cursor.set_meta("Held_item",item_resource)
+		
 	
 #func follow_mouse_sprite():
 	#var itemQuantity = Label.new()
