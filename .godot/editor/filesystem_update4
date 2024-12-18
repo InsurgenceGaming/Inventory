@@ -1,9 +1,2 @@
-res://UI/open_world.tscn
-res://Inventory.gd
-res://UI/Inventory.tscn
 res://UI/Slot.tscn
-res://Slot.gd
-res://Item_Resource.gd
-res://open_world.gd
-res://test_button.gd
-res://Apple.tres
+res://Inventory.gd

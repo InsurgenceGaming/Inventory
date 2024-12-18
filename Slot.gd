@@ -1,11 +1,11 @@
 extends Panel
 
 @onready var item_visual : Sprite2D = $Sprite2D
-var sprite_following_mouse: Sprite2D
 
-
+#make the item invisible when not carrying something, then i should save a lot of resources on queue free
 var index
 var inventory
+var first_item_clicked: bool
 var player : Node
 var inventory_Base_node : Node
 func initialize(player_ref: Node, inventory_ref : Node):
@@ -14,7 +14,6 @@ func initialize(player_ref: Node, inventory_ref : Node):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	inventory = player.inventory_array
-	inventory_Base_node.ItemHeld = false
 	index = get_index_in_grid()
 	pass # Replace with function body.
 
@@ -33,26 +32,30 @@ func Slot_update():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if inventory_Base_node.ItemHeld && sprite_following_mouse:
-		sprite_following_mouse.global_position = get_global_mouse_position()
 	pass
 		##inventory_Base_node.has_meta("ItemHeld") and if stuff breaks add this back before inventory_base_node.get_meta()
 func _on_gui_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("move_item"):
 		index = get_index_in_grid()
-		if inventory_Base_node.ItemHeld == true:
-			print(inventory[index])
-		elif inventory[index] != null:
-				inventory_Base_node.ItemHeld = true
-				follow_mouse_sprite()
+		print(index)
+		if inventory_Base_node.get_meta("ItemHeld") == true:
+			var temp = cursor_state["held_item"]
+			#inventory[index] = get_parent().get_parent().get_parent().get_node("cursor").get_meta("HeldItemInfo")
+			inventory[index] = temp
+			print(inventory[index].Item_quantity)
+			Slot_update() 
+			Update_cursor()
+			inventory_Base_node.set_meta("ItemHeld", false)
+			#get_parent().get_parent().get_parent().get_node("Held_shit").queue_free()
+		elif inventory[index] != null && first_item_clicked == false:
+				inventory_Base_node.set_meta("ItemHeld", true)
+				print("this should be first item clicked ",first_item_clicked)
+				Update_cursor()
 				inventory[index] = null
 				print("Item at slot ", index, " has been deleted.")
 				Slot_update()
-		
-		
-		
-		
-		
+				first_item_clicked = true
+				print("this should be first item clicked ",first_item_clicked)
 		
 		
 #		the below code is buggy as fuck at the minute
@@ -117,21 +120,47 @@ func _on_gui_input(event: InputEvent) -> void:
 			Slot_update()
 			Input.set_custom_mouse_cursor(inventory[index].Item_Texture)
 			
-func follow_mouse_sprite():
-	var itemQuantity = Label.new()
-	var item_resource
-	sprite_following_mouse = Sprite2D.new()
-	itemQuantity.text = str(inventory[index].Item_quantity)
-	sprite_following_mouse.texture = inventory[index].Item_Texture
-	sprite_following_mouse.position = get_global_mouse_position()
-	inventory_Base_node.add_child(sprite_following_mouse)
-	sprite_following_mouse.add_child(itemQuantity)
-	item_resource = InvItem.new()
-	item_resource.Item_Max_quantity = inventory[index].Item_Max_quantity
-	item_resource.Item_name = inventory[index].Item_name
-	item_resource.Item_quantity = inventory[index].Item_quantity
-	item_resource.Item_Texture = inventory[index].Item_Texture
-	sprite_following_mouse.set_meta("HeldItemInfo",item_resource)
+			
+			
+			
+var cursor_state = {
+	"held_item": null
+}
+
+func Update_cursor():
+	var Cursor = inventory_Base_node.get_node("cursor")
+	if inventory[index] == null:
+		Cursor.texture = null
+		cursor_state["held_item"] = null
+		print("Cursor texture set to null")
+	else:
+		Cursor.texture = inventory[index].Item_Texture
+		
+		var item_resource = InvItem.new()
+		item_resource.Item_name = inventory[index].Item_name
+		item_resource.Item_quantity = inventory[index].Item_quantity
+		item_resource.Item_Texture = inventory[index].Item_Texture
+		item_resource.Item_Max_quantity = inventory[index].Item_Max_quantity
+		
+		cursor_state["held_item"] = item_resource
+		print("Cursor now holds item: ", cursor_state["held_item"])
+	
+#func follow_mouse_sprite():
+	#var itemQuantity = Label.new()
+	#var item_resource
+	#sprite_following_mouse = Sprite2D.new()
+	#itemQuantity.text = str(inventory[index].Item_quantity)
+	#sprite_following_mouse.texture = inventory[index].Item_Texture
+	#sprite_following_mouse.position = get_global_mouse_position()
+	#inventory_Base_node.add_child(sprite_following_mouse)
+	#sprite_following_mouse.add_child(itemQuantity)
+	#item_resource = InvItem.new()
+	#item_resource.Item_Max_quantity = inventory[index].Item_Max_quantity
+	#item_resource.Item_name = inventory[index].Item_name
+	#item_resource.Item_quantity = inventory[index].Item_quantity
+	#item_resource.Item_Texture = inventory[index].Item_Texture
+	#sprite_following_mouse.set_meta("HeldItemInfo",item_resource)
+	#sprite_following_mouse.name = "Held_shit"
 
 	
 	

@@ -2,15 +2,25 @@ extends Control
 ## Define things on scene creation
 @onready var slot = preload("res://UI/Slot.tscn")
 ## definre variables
+var sprite_following_mouse: Sprite2D
 var draggingDistance
 var dir
 var dragging
 var newposition
 var mouse_in = false
 var player : Node
-var ItemHeld : bool
 func initialize(player_ref: Node):
 	player = player_ref
+
+func follow_mouse_sprite():
+	var itemQuantity = Label.new()
+	var item_in_hand:InvItem
+	sprite_following_mouse = Sprite2D.new()
+	sprite_following_mouse.texture = null
+	$".".add_child(sprite_following_mouse)
+	sprite_following_mouse.add_child(itemQuantity)
+	sprite_following_mouse.name = "cursor"
+	print(sprite_following_mouse.name)
 	
 	
 func _ready():
@@ -23,12 +33,20 @@ func _ready():
 	var slots: Array = $Panel/GridContainer.get_children()
 	for i in range(min(player.get_meta("Inventory_size").size(),slots.size())):
 		slots[i].Slot_update()
+	follow_mouse_sprite()
+	set_meta("ItemHeld", false)
 
 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if $".".get_meta("ItemHeld",true):
+		if sprite_following_mouse:
+			get_node("cursor").global_position = get_global_mouse_position()
+		else: 
+			pass
+	pass
 	if dragging:
 		position = newposition
 
